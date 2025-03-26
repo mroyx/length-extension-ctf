@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <a class="navbar-brand d-flex align-items-center text-white ms-2 me-4" href="/">
+            🛡️ <span class="ms-2 fw-bold">TotallySecure™</span>
+          </a>
+      
+        <div class="d-flex justify-content-center flex-grow-1">
+            <ul class="navbar-nav d-flex flex-row gap-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/members">Members</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/store">Store</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">Cart</a>
+                </li>
+            </ul>
+        </div>
+        <div id="user-info" class="d-flex align-items-center gap-3 text-white">
+            {% if 'user' in session %}
+                <span class="me-3">
+                     👤  Welcome, <strong>{{ session['user'] }}</strong>!
+                     💰  Balance: <strong>${{ "%.2f"|format(balance) }}</strong>
+                </span>
+                <a href="{{ url_for('logout') }}" class="btn btn-outline-light btn-sm">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-sm">Login</a>
+            {% endif %}
+        </div>      
+    </div>
+</nav>
+<div class="container mt-5 pt-5">
+        <h1 class="text-center mb-4">Welcome to TotallySecure!</h1>
+        <img src="/static/images/logo.png" class="d-block mx-auto" alt="logo" style="width: 200px; height: auto;">
+
+        <p class="pt-3">
+            The <a href="/members" class="link-primary">Members</a> section is available exclusively to users with an active TotallySecure™+ Membership. It unlocks premium features and early access to upcoming tools and services.
+          </p>
+      
+          <p>
+            Want to upgrade? Visit the <a href="/store" class="link-primary">Store</a> to explore available options.
+            <span><strong>Note:</strong> Adding funds is currently unavailable. We're working on it!</span>
+          </p>
+    </div>
+</div>
+</body>
+</html>
