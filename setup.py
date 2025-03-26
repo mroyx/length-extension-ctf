@@ -1,22 +1,5 @@
 import mysql.connector
 
-"""
--- Log in as root:
-sudo mysql -u root
-
--- Create the DB
-CREATE DATABASE ctf;
-
--- Create user
-CREATE USER 'flaskuser'@'localhost' IDENTIFIED BY 'flaskpassword';
-
--- Grant permissions
-GRANT ALL PRIVILEGES ON ctf.* TO 'flaskuser'@'localhost';
-FLUSH PRIVILEGES;
-
---run setup.py
-"""
-
 # Config for app user (must already exist with GRANT privileges on ctf.*)
 APP_USER = 'flaskuser'
 APP_PASSWORD = 'flaskpassword'
